@@ -11,27 +11,18 @@ namespace bookstore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IBookstoreRepository Repository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBookstoreRepository repository)
         {
-            _logger = logger;
+            Repository = repository;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
+            var books = Repository.Books.ToList();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(books);
         }
     }
 }
