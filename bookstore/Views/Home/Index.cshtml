@@ -3,9 +3,32 @@
 }
 @model List<BookModel>
 
-<h1>The Water Project</h1>
-
-@foreach (BookModel book in Model)
-{
-    <h2>@book.Title</h2>
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">Classification</th>
+            <th scope="col">Category</th>
+            <th scope="col">PageCount</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BookModel book in Model)
+        {
+            <tr>
+                <th scope="row">@book.Title</th>
+                <td>@book.Author</td>
+                <td>@book.Publisher</td>
+                <td>@book.ISBN</td>
+                <td>@book.Classification</td>
+                <td>@book.Category</td>
+                <td>@book.PageCount</td>
+                <td>$@book.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
