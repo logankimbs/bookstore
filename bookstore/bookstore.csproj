@@ -10,6 +10,8 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
+    <None Remove="Infrastructure\" />
+    <None Remove="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.22" />
@@ -28,5 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
 </Project>

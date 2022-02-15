@@ -1,7 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model List<BookModel>
+@model BookViewModel
+
+<h1 class="display-4 mb-4">Books</h1>
 
 <table class="table">
     <thead>
@@ -17,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (BookModel book in Model)
+        @foreach (BookModel book in Model.Books)
         {
             <tr>
                 <th scope="row">@book.Title</th>
@@ -32,3 +34,7 @@
         }
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end" page-blah="@Model.PageInfo" page-action="Index"></ul>
+</nav>
