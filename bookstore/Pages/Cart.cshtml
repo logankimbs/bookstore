@@ -1,0 +1,40 @@
+﻿@page
+@model bookstore.Pages.CartModel
+@{
+}
+
+<h1 class="display-4 mb-4">Shopping Cart</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var i in Model.Basket.Items)
+        {
+            <tr>
+                <td>@i.Book.Title</td>
+                <td>@i.Quantity</td>
+                <td>$@Math.Round(i.Book.Price, 2)</td>
+                <td>$@Math.Round((i.Quantity * i.Book.Price), 2)</td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="3">Total:</td>
+            <td>$@Model.Basket.CalculateTotal()</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+</div>
