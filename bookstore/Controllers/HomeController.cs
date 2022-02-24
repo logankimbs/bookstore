@@ -19,19 +19,26 @@ namespace bookstore.Controllers
             Repository = repository;
         }
 
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string bookCategory, int pageNum = 1)
         {
             int pageSize = 10;
             var pageData = new BookViewModel
+
             {
                 Books = Repository.Books
-                            .OrderBy(p => p.Title)
-                            .Skip((pageNum - 1) * pageSize)
-                            .Take(pageSize),
+                    .Where(book => book.Category == bookCategory || bookCategory == null)
+                    .OrderBy(book => book.Title)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
+
                 PageInfo = new PageInformation
                 {
-                    NumOfProjects = Repository.Books.Count(),
-                    ProjectsPerPage = pageSize,
+                    NumOfBooks = (
+                        bookCategory == null ?
+                        Repository.Books.Count() :
+                        Repository.Books.Where(book => book.Category == bookCategory).Count()
+                    ),
+                    BooksPerPage = pageSize,
                     CurrrentPage = pageNum
                 }
             };

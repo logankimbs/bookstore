@@ -8,7 +8,7 @@ using bookstore.Models.ViewModels;
 
 namespace bookstore.Infrastructure
 {
-    [HtmlTargetElement("ul", Attributes = "page-blah")]
+    [HtmlTargetElement("div", Attributes = "page-blah")]
     public class Pagination : TagHelper
     {
         private IUrlHelperFactory Uhf;
@@ -23,17 +23,26 @@ namespace bookstore.Infrastructure
         public ViewContext Vc { get; set; }
         public PageInformation PageBlah { get; set; }
         public string PageAction { get; set; }
+        public string PageClass { get; set; }
+        public bool PageClassEnabled { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             IUrlHelper uh = Uhf.GetUrlHelper(Vc);
-            TagBuilder final = new TagBuilder("ul");
+            TagBuilder final = new TagBuilder("div");
 
             for (int i = 1; i <= PageBlah.TotalPages; i++)
             {
                 TagBuilder tb = new TagBuilder("a");
                 tb.Attributes["Href"] = uh.Action(PageAction, new { PageNum = i });
-                tb.Attributes["class"] = "page-link";
+                if (PageClassEnabled)
+                {
+                    tb.AddCssClass(PageClass);
+                    tb.AddCssClass(i == PageBlah.CurrrentPage ? PageClassSelected : PageClassNormal);
+                }
+                tb.AddCssClass(PageClass);
                 tb.InnerHtml.Append(i.ToString());
                 final.InnerHtml.AppendHtml(tb);
             }
