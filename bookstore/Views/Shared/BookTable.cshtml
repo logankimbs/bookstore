@@ -1,7 +1,7 @@
 ﻿@{
 }
 
-@model BookModel
+@model BookModel;
 
 <tr>
     <th scope="row">@Model.Title</th>
@@ -12,4 +12,12 @@
     <td>@Model.Category</td>
     <td>@Model.PageCount</td>
     <td>$@Model.Price</td>
+    <td>
+        <form method="post" asp-page="/Cart">
+            <input type="hidden" asp-for="@Model.BookID" />
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+            <button type="submit" class="btn btn-success btn-sm">Add</button>
+        </form>
+    </td>
 </tr>

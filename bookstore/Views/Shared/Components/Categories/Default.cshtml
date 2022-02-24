@@ -3,7 +3,7 @@
 
 @model IEnumerable<string>
 
-<div class="mb-1">
+<div class="mb-2">
     <a asp-controller="Home"
        asp-action="Index"
        asp-route-bookCategory=""
@@ -16,6 +16,8 @@
         <a asp-controller="Home"
            asp-action="Index"
            asp-route-bookCategory="@category"
-           asp-route-pageNum="1">@category</a>
+           asp-route-pageNum="1"
+           type="button"
+           class="btn @(ViewBag.SelectedCategory == category ? "btn-primary" : "btn-outline-secondary" ) btn-sm">@category</a>
     </div>
 }

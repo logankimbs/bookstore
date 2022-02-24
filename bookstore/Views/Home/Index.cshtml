@@ -16,21 +16,21 @@
             <th scope="col">Category</th>
             <th scope="col">PageCount</th>
             <th scope="col">Price</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (BookModel book in Model.Books)
         {
-            <partial name="BookTable" model="book"></partial>
+            <partial name="BookTable" model="book" />
         }
     </tbody>
 </table>
 
-
-<div class="btn-group m-1"
-     page-blah="@Model.PageInfo"
+<div page-blah="@Model.PageInfo"
      page-action="Index"
      page-class="btn"
      page-class-normal="btn-outline-dark"
      page-class-selected="btn-primary"
-     page-class-enabled="true"></div>
+     page-class-enabled="true"
+     class="btn-group m-1"></div>
