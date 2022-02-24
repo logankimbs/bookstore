@@ -28,10 +28,14 @@
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container row m-1 p-4">
+        <div id="types" class="col-3">
+            <vc:categories></vc:categories>
+        </div>
+
+        <div class="pb-3 col-9">
             @RenderBody()
-        </main>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">

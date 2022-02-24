@@ -21,20 +21,16 @@
     <tbody>
         @foreach (BookModel book in Model.Books)
         {
-            <tr>
-                <th scope="row">@book.Title</th>
-                <td>@book.Author</td>
-                <td>@book.Publisher</td>
-                <td>@book.ISBN</td>
-                <td>@book.Classification</td>
-                <td>@book.Category</td>
-                <td>@book.PageCount</td>
-                <td>$@book.Price</td>
-            </tr>
+            <partial name="BookTable" model="book"></partial>
         }
     </tbody>
 </table>
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end" page-blah="@Model.PageInfo" page-action="Index"></ul>
-</nav>
+
+<div class="btn-group m-1"
+     page-blah="@Model.PageInfo"
+     page-action="Index"
+     page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     page-class-enabled="true"></div>

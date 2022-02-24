@@ -12,6 +12,9 @@
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Infrastructure\" />
     <None Remove="Models\ViewModels\" />
+    <None Remove="Components\" />
+    <None Remove="Views\Shared\Components\" />
+    <None Remove="Views\Shared\Components\Categories\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.22" />
@@ -32,5 +35,8 @@
     <Folder Include="wwwroot\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Models\ViewModels\" />
+    <Folder Include="Components\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\Categories\" />
   </ItemGroup>
 </Project>
