@@ -35,13 +35,15 @@ namespace bookstore
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
 
+            services.AddScoped<IDonationRepository, EFDonationRepository>();
+
             services.AddRazorPages();
 
             services.AddDistributedMemoryCache();
 
             services.AddSession();
 
-            services.AddScoped<Basket>(x => SessionBasket.GetBasket(x));
+            services.AddScoped(x => SessionBasket.GetBasket(x));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
