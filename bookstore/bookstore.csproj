@@ -16,6 +16,8 @@
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\Categories\" />
     <None Remove="Pages\" />
+    <None Remove="Views\Donation\" />
+    <None Remove="Views\Shared\Components\CartSummary\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.22" />
@@ -40,5 +42,7 @@
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="Views\Shared\Components\Categories\" />
     <Folder Include="Pages\" />
+    <Folder Include="Views\Donation\" />
+    <Folder Include="Views\Shared\Components\CartSummary\" />
   </ItemGroup>
 </Project>
