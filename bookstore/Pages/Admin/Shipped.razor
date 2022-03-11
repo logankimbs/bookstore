@@ -1,0 +1,44 @@
+﻿@page "/admin/shipped"
+@inherits OwningComponentBase<IDonationRepository>
+
+<ShippedTable TableTitle="Not Shipped Books"
+              BookShipped="NotShippedBooks"
+              ButtonLabel="Shipped"
+              ShippedSelected="SendBook"></ShippedTable>
+
+<ShippedTable TableTitle="Shipped Books"
+              BookShipped="ShippedBooks"
+              ButtonLabel="Reset"
+              ShippedSelected="ResetBook"></ShippedTable>
+
+<button class="btn btn-info" @onclick="@(x => UpdateData())">Refresh Data</button>
+
+@code {
+    public IDonationRepository repo => Service;
+
+    public IEnumerable<Donation> NotShippedBooks { get; set; }
+    public IEnumerable<Donation> ShippedBooks { get; set; }
+    public IEnumerable<Donation> AllBooks { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        AllBooks = await repo.Donations.ToListAsync();
+        NotShippedBooks = AllBooks.Where(x => !x.BookShipped);
+        ShippedBooks = AllBooks.Where(x => x.BookShipped);
+    }
+
+    public void SendBook(int id) => UpdateShipped(id, true);
+    public void ResetBook(int id) => UpdateShipped(id, false);
+
+    public void UpdateShipped(int id, bool shipped)
+    {
+        Donation d = repo.Donations.FirstOrDefault(x => x.DonationId == id);
+        d.BookShipped = shipped;
+        repo.SaveDonation(d);
+    }
+}
