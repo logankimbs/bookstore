@@ -1,0 +1,56 @@
+﻿<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th colspan="5" class="text-center">@TableTitle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (BookShipped?.Count() > 0)
+        {
+            @foreach (Donation s in BookShipped)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>@s.Zip</td>
+                    <td>Book</td>
+                    <td>Quantity</td>
+
+                    <td>
+                        <button class="btn btn-sm btn-danger" @onclick="(x => ShippedSelected.InvokeAsync(s.DonationId))">
+                            @ButtonLabel
+                        </button>
+                    </td>
+                </tr>
+
+                @foreach (BasketLineItem bli in s.Lines)
+                {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>@bli.Book.Title</td>
+                        <td>@bli.Quantity</td>
+                    </tr>
+                }
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No Orders</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public string TableTitle { get; set; } = "Shipped";
+
+    [Parameter]
+    public IEnumerable<Donation> BookShipped { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ShippedSelected { get; set; }
+
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Sent";
+}
