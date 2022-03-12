@@ -7,15 +7,17 @@
 <div class="container-fluid">
     <div class="row p-2">
         <div class="col-3 d-grid">
-            <NavLink class="btn btn-outline-primary"
-                     href="/admin/books"
-                     ActiveClass="btn btn-primary text-white"
-                     Match="NavLinkMatch.Prefix">Books</NavLink>
+            <div class="d-grid gap-2">
+                <NavLink class="btn btn-outline-primary"
+                         href="/admin/books"
+                         ActiveClass="btn btn-primary text-white"
+                         Match="NavLinkMatch.Prefix">Books</NavLink>
 
-            <NavLink class="btn btn-outline-primary"
-                     href="/admin/shipped"
-                     ActiveClass="btn btn-primary text-white"
-                     Match="NavLinkMatch.Prefix">Shipped</NavLink>
+                <NavLink class="btn btn-outline-primary"
+                         href="/admin/shipped"
+                         ActiveClass="btn btn-primary text-white"
+                         Match="NavLinkMatch.Prefix">Shipped</NavLink>
+            </div>
         </div>
         <div class="col">
             @Body
